@@ -6,8 +6,13 @@ package com.nastajus;
 public class SyntaxFinal {
 
     //test #2
-    //static final int a;     //"variable a might not have been initialized" == must initialize here.
+    //static final int a;     //must initialize here.
     static final int a = 10;
+
+    //test #3
+    //final SyntaxFinalBuddy b;       //final's trait of delayed assignment doesn't work
+    //b = new SyntaxFinalBuddy();
+
 
     void bar() {
         //test #1
