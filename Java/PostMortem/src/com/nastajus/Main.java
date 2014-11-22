@@ -6,7 +6,7 @@ public class Main {
 	// write your code here
 
         SyntaxFinal foo = new SyntaxFinal();
-
+        System.out.println("test");
     }
 
 }

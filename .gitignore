@@ -4,6 +4,9 @@
 
 
 *.recommenders/
+.project
+.classpath
+
 
 
 *.pydevproject
