@@ -1,0 +1,43 @@
+E, E(M)
+remember, 
+describe, remember
+name, remember
+find, remember
+list, remember
+relate, remember
+write, remember
+understand, 
+explain, understand
+compare, understand
+discuss, understand
+predict, understand
+outline, understand
+restate, understand
+apply,
+complete, apply
+use, apply
+examine, apply
+illustrate, apply
+classify, apply
+solve, apply
+analyze,
+compare-contrast, analyze
+examine, analyze
+explain, analyze
+identify, analyze
+categorize, analyze
+investigate, analyze
+evaluate,
+justify, evaluate
+assess, evaluate
+prioritize, evaluate
+recommend, evaluate
+rate, evaluate
+decide-choose, evaluate
+create,
+plan, create
+invent, create
+compose, create
+design, create
+construct, create
+imagine, create
