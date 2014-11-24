@@ -4,10 +4,11 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.Map;
 
 public abstract class App {
 	
-	static HashMap<String, String> map = new HashMap<String, String>();
+	static Map<String, String> map = new HashMap<String, String>();
 	
 	static void read() throws IOException{
 		FileReader fr = new FileReader("blooms-verbs.txt");
@@ -32,9 +33,9 @@ public abstract class App {
 			}
 		}
 		
-//		for (KeyValue pair : map ){
-//			
-//		}
+		for (Map.Entry<K, V> entry : map ){
+			
+		}
 		
 	}
 
