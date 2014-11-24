@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 
 public abstract class App {
@@ -33,10 +34,12 @@ public abstract class App {
 			}
 		}
 		
-		for (Map.Entry<K, V> entry : map ){
-			
+		Iterator it = map.entrySet().iterator();
+		while (it.hasNext()){
+			Map.Entry pairs = (Map.Entry)it.next();
+			System.out.println(pairs.getKey() + " = " + pairs.getValue());
+			it.remove(); // avoid problems
 		}
-		
 	}
 
 }
