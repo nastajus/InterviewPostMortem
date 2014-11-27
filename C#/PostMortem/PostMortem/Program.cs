@@ -9,6 +9,9 @@ namespace PostMortem
         {
             SyntaxConst foo = new SyntaxConst();
             Console.ReadLine();
+
+            
+
         }
     }
 
@@ -20,5 +23,18 @@ namespace PostMortem
         //b = 10;
         //not allowed
         
+    }
+
+
+    class Block
+    {
+        //invalid block syntax:
+        {
+            int a;
+        }
+
+        {
+            int a;
+        }
     }
 }
