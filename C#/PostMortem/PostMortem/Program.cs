@@ -8,10 +8,13 @@ namespace PostMortem
         static void Main(string[] args)
         {
             SyntaxConst foo = new SyntaxConst();
+
+            //failure. doesn't work// Coverity PDF
+            ObjectInitializers oi = new ObjectInitializers("foo", 10);
+            var oi2 = new ObjectInitializers{ Foo="foo", Bar=10}
+
+
             Console.ReadLine();
-
-            
-
         }
     }
 
@@ -30,12 +33,28 @@ namespace PostMortem
     {
         //invalid token '{' 
         //anonymous blocks do not exist in C#
+        //{
+        //    int a;
+        //}
+
+        //{
+        //    int a;
+        //}
+    }
+
+    class ObjectInitializers
+    {
+
+        //Object initializers
+        //You can set properties on a newly created object from within the
+        //creation expression itself. To create a new object of class C with
+        //specified values for the Foo and Bar properties:
+        //new C {Foo=blah, Bar=blam}
+
+        public ObjectInitializers(string Foo, int Bar)
         {
-            int a;
+            Console.WriteLine("Foo: " + Foo + ", Bar: " + Bar);
         }
 
-        {
-            int a;
-        }
     }
 }
