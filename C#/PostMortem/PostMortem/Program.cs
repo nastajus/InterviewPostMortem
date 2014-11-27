@@ -28,7 +28,8 @@ namespace PostMortem
 
     class Block
     {
-        //invalid block syntax:
+        //invalid token '{' 
+        //anonymous blocks do not exist in C#
         {
             int a;
         }
