@@ -10,8 +10,9 @@ namespace PostMortem
             SyntaxConst foo = new SyntaxConst();
 
             //failure. doesn't work// Coverity PDF
-            ObjectInitializers oi = new ObjectInitializers("foo", 10);
-            var oi2 = new ObjectInitializers{ Foo="foo", Bar=10}
+            //var oi2 = new ObjectInitializers{ Foo="foo", Bar=10}
+
+            Fizzbuzz.run();
 
 
             Console.ReadLine();

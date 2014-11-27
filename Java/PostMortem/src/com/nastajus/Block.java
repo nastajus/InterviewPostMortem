@@ -7,7 +7,7 @@ public class Block {
 
     //all three variables are in scope
     int a = 2;
-    
+
     //anonymous code blocks
     {
         int a = 22;

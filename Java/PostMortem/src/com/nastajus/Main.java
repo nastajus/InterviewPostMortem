@@ -11,6 +11,9 @@ public class Main {
         System.out.println("test");
 
         App.read();
+
+
+        Fizzbuzz.run();
     }
 
 }
