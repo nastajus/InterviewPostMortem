@@ -30,7 +30,7 @@ public class InnerClassDataStructure {
     // Inner class implements the DataStructureIterator interface,
     // which extends the Iterator<Integer> interface
 
-    class EvenIterator implements java.util.Iterator<Integer>{
+    public class EvenIterator implements java.util.Iterator<Integer>{
     //DataStructureIterator
 
         // Start stepping through the array from the beginning
