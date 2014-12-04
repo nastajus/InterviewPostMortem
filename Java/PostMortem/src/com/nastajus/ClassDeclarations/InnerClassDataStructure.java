@@ -20,19 +20,18 @@ public class InnerClassDataStructure {
     public void printEven() {
 
         // Print out values of even indices of the array
-        DataStructureIterator iterator = this.new EvenIterator();
+        java.util.Iterator<Integer> iterator = this.new EvenIterator();
         while (iterator.hasNext()) {
             System.out.print(iterator.next() + " ");
         }
         System.out.println();
     }
 
-    interface DataStructureIterator extends java.util.Iterator<Integer> { }
-
     // Inner class implements the DataStructureIterator interface,
     // which extends the Iterator<Integer> interface
 
-    class EvenIterator implements DataStructureIterator {
+    class EvenIterator implements java.util.Iterator<Integer>{
+    //DataStructureIterator
 
         // Start stepping through the array from the beginning
         private int nextIndex = 0;
