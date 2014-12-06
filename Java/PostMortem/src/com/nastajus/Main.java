@@ -14,6 +14,10 @@ public class Main {
 
 
         Fizzbuzz.run();
+
+        int[] shit = {3,5,7,9};
+        int target = 10;
+        SumOfTwo.run(shit, target);
     }
 
 }
