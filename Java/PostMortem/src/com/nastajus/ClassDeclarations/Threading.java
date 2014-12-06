@@ -32,38 +32,24 @@ public class Threading {
         );
 
 
-        final String s;
-        s = "Foo anon";
 
-        Thread thread4 = new Thread( new Runnable() {
+        Thread thread4 = new Thread( new LoopPrinter("bugs") {
+            int count = 0;
             @Override
             public void run() {
 
                 while( true ) {
-                    System.out.println(s);
-                }
-            }
-        }); //awesome lambdas
-
-
-        final String ss;
-        ss = "Bar anon";
-        Thread thread5 = new Thread( new Runnable() {
-            @Override
-            public void run() {
-
-                while( true ) {
-                    System.out.println(s);
+                    count++;
+                    System.out.println(s + " " + count);
                 }
             }
         }); //awesome lambdas
 
 
         //thread.start();
-        thread2.start();
-        thread3.start();
+//        thread2.start();
+//        thread3.start();
         thread4.start();
-        thread5.start();
 
 
 
