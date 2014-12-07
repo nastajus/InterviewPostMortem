@@ -11,6 +11,8 @@ public class Threading {
         //thread 3: main thread, reports to the user
 
 
+        //called an anonymous subclass
+        //where subclass refers to being derived from Runnable
         Thread thread = new Thread( new Runnable() {
             @Override
             public void run() {
@@ -32,7 +34,8 @@ public class Threading {
         );
 
 
-
+        //called an inline object
+        //i deserve to be punched if i call this an anonymous object, though it can still make sense
         Thread thread4 = new Thread( new LoopPrinter("bugs") {
             int count = 0;
             @Override
@@ -46,10 +49,29 @@ public class Threading {
         }); //awesome lambdas
 
 
+
+        //called an anonymous subclass .... Or anonymous LoopPrinter class ....
+        Runnable x = new LoopPrinter("Dante Want'd A Damn Parameter"){
+            int count = 0;
+            @Override
+            public void run() {
+
+                while( true ) {
+                    count++;
+                    System.out.println(s + " " + count);
+                }
+            }
+        };
+
+
+        Thread thread5 = new Thread(x);
+
+
         //thread.start();
 //        thread2.start();
 //        thread3.start();
         thread4.start();
+        thread5.start();
 
 
 
