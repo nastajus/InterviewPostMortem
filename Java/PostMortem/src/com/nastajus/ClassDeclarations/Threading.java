@@ -1,82 +1,76 @@
 package com.nastajus.ClassDeclarations;
 
+import java.util.Random;
+import java.util.concurrent.ConcurrentLinkedQueue;
+
 /**
  * Created by IAN on 04/12/14.
  */
 public class Threading {
+
+    static ConcurrentLinkedQueue<Integer> clq = new ConcurrentLinkedQueue<Integer>();
+    static int maxQueue = 20;
+    static int minMS = 0;
+    static int maxMS = 1000;
+    static Random r = new Random();
+
     public static void main(String args[]){
         //start 3 threads
         //thread 1: fill a queue
         //thread 2: consume a queue
         //thread 3: main thread, reports to the user
 
+        //determine which is the "main" thread.
+        //main thread has to produce three messages: started, done producing, done consuming
 
-        //called an anonymous subclass
-        //where subclass refers to being derived from Runnable
-        Thread thread = new Thread( new Runnable() {
+        //thread_produce
+        Thread tp = new Thread( new Runnable() {
             @Override
             public void run() {
-                //System.out.println("started thread! O_O ");
+                System.out.println("START.");
+                for (int i = 0; i < maxQueue; i++){
+                    clq.add(i);
 
-                while( true ) {
-                    System.out.println("bar");
+                    int rand = r.nextInt(maxMS - minMS + 1) + minMS;
+
+                    try {
+                        Thread.sleep(rand);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+
+                    System.out.println("PROD: " + i);
                 }
             }
-        }); //awesome lambdas
+        });
 
 
-        Thread thread2 = new Thread(
-            new LoopPrinter("foo")
-        );
-
-        Thread thread3 = new Thread(
-             new LoopPrinter("bar")
-        );
-
-
-        //called an inline object
-        //i deserve to be punched if i call this an anonymous object, though it can still make sense
-        Thread thread4 = new Thread( new LoopPrinter("bugs") {
+        //thread_consume
+        Thread tc = new Thread( new Runnable() {
             int count = 0;
             @Override
             public void run() {
 
-                while( true ) {
-                    count++;
-                    System.out.println(s + " " + count);
-                }
-            }
-        }); //awesome lambdas
-
-
-
-        //called an anonymous subclass .... Or anonymous LoopPrinter class ....
-        Runnable x = new LoopPrinter("Dante Want'd A Damn Parameter"){
-            int count = 0;
-            @Override
-            public void run() {
+                int rand = r.nextInt(maxMS - minMS + 1) + minMS;
 
                 while( true ) {
-                    count++;
-                    System.out.println(s + " " + count);
+                    try {
+                        Thread.sleep(rand);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    if (clq.size()>0){
+                        count++;
+                        System.out.println("CONS: " + clq.remove() );
+                    }
+                    if (count == maxQueue) break;
                 }
+                System.out.println("DONE.");
             }
-        };
+        });
 
-
-        Thread thread5 = new Thread(x);
-
-
-        //thread.start();
-//        thread2.start();
-//        thread3.start();
-        thread4.start();
-        thread5.start();
-
-
-
-
-
+        tp.start();
+        tc.start();
 
     }
 }
