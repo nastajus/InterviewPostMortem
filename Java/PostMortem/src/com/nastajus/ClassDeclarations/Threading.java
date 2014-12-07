@@ -13,6 +13,10 @@ public class Threading {
     static int minMS = 0;
     static int maxMS = 1000;
     static Random r = new Random();
+    static int currentp = -1;
+    static int currentc = -1;
+    static boolean done = false;
+
 
     public static void main(String args[]){
         //start 3 threads
@@ -26,15 +30,12 @@ public class Threading {
 
         //thread_produce
         Thread tp = new Thread( new Runnable() {
-
-            public boolean ready = false;
-
             @Override
             public void run() {
                 System.out.println("START.");
                 for (int i = 0; i < maxQueue; i++){
                     clq.add(i);
-                    ready = true;
+                    currentp = i;
 
                     int rand = r.nextInt(maxMS - minMS + 1) + minMS;
 
@@ -44,38 +45,33 @@ public class Threading {
                         e.printStackTrace();
                     }
 
-                    System.out.println("PROD: " + i);
                 }
             }
         });
 
 
         //thread_consume
-        Runnable x = new Runnable() {
-            public boolean ready = false;
+        Thread tc = new Thread( new Runnable() {
             int count = 0;
-
             @Override
             public void run() {
 
                 int rand = r.nextInt(maxMS - minMS + 1) + minMS;
 
-                while (true) {
+                while( true ) {
                     try {
                         Thread.sleep(rand);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
-                    if (clq.size() > 0) {
+                    if (clq.size()>0){
                         count++;
-                        System.out.println("CONS: " + clq.remove());
+                        currentc = clq.remove();
                     }
-                    if (count == maxQueue) break;
+                    if (count == maxQueue) { done = true; break; }
                 }
-                System.out.println("DONE.");
             }
-        };
-        Thread tc = new Thread(x);
+        });
 
         tp.start();
         tc.start();
@@ -83,11 +79,18 @@ public class Threading {
         //I AM THE MAIN THREAD.
         //I WILL HAS CONCURRENCY CONTROL
 
-        //Cannot resolve symbol 'ready'
-        //because the compiler will only see that x is of type Runnable, and in order for it to know it's of type
-        //that Runnable anonymous class, it would need to be cast to it. Which is impossible.
-        x.ready;
+        while ( !done ){
+            if (currentp != -1){
+                System.out.println("PRO: " + currentp);
+                currentp = -1;
+            }
+            if (currentc != -1) {
+                System.out.println("CONSUME: " + currentc );
+                currentc = -1;
+            }
+        }
 
+        System.out.println("DONE.");
 
     }
 }
